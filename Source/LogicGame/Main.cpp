@@ -9,19 +9,27 @@ using namespace sf;
 int widthX = VideoMode::getDesktopMode().width;
 int heightY = VideoMode::getDesktopMode().height;
 
-
+struct Card
+{
+    Card(Vector2f size) {
+        card.setSize(size);
+        card.setFillColor(Color::Cyan);
+        card.setOutlineThickness(1.f);
+        card.setOutlineColor(Color::Black);
+		card.setOrigin(Vector2f(25.f, 25.f));
+    }
+    RectangleShape card;
+    bool selected = false;
+};
 
 int main()
 {
+	srand((unsigned)time(nullptr));
     RenderWindow window(VideoMode(widthX, heightY),"Booleo", Style::Fullscreen);
 
-    
-    RectangleShape shape(Vector2f(widthX,heightY));
+    RectangleShape background(Vector2f(widthX,heightY));
 
-    shape.setFillColor(Color::White);
-
-    RectangleShape button(Vector2f(widthX / 11, heightY / 5));
-    button.setFillColor(Color::Cyan);
+    background.setFillColor(Color::White);
     Font fon;
     fon.loadFromFile("Fonts/arial.ttf");
     Text t;
@@ -30,15 +38,18 @@ int main()
     t.setFillColor(Color::Black);
     t.setPosition(Vector2f(widthX / 2, heightY / 2));
     t.setOrigin(Vector2f(100.f, 25.f));
-    t.setString("FlashBANG");
-
-    RectangleShape cardHand1(Vector2f(120.f, 150.f));
-    cardHand1.setFillColor(Color::Cyan);
-    cardHand1.setPosition(60.f, heightY/2);
-    cardHand1.setOrigin(Vector2f(60.f,75.f));
-   
+	t.setString("FlashBANG");
 
 
+	Card* currentCard = nullptr;
+	vector<Card> cards;
+	bool dragging = false;
+	for (int i = 0; i < 21; ++i) {
+		auto card = new Card({ 120.f,170.f });
+		card->card.setPosition(rand() % 1100 + 100, rand() % 650 + 100);
+		cards.push_back(*card);
+
+	}
     while (window.isOpen())
     {
        
@@ -46,24 +57,41 @@ int main()
         {
             window.close();
         }
-        
+		auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
+		if (Mouse::isButtonPressed(Mouse::Left) && !dragging) 
+		{
+			dragging = true;
+				for (auto& it : cards) {
+					if (it.card.getGlobalBounds().contains(mpos.x, mpos.y) && currentCard == nullptr) {
+						it.selected = true;
+						currentCard = &it;
+						break;
+					}
+				}
+		}
+		else if(!(Mouse::isButtonPressed(Mouse::Left))){
 
+			dragging = false;
+			if (currentCard) 
+			{
+				currentCard->selected = false;
+				currentCard = nullptr;
+			}
+		}
+
+		if (dragging == true) {
+			for (int i = 0; i < cards.size(); i++) {
+				if (cards[i].selected)
+					cards[i].card.setPosition(mpos.x, mpos.y);
+
+			}
+		}
         window.clear();
-        window.draw(shape);
-       
-
-        if (Mouse::isButtonPressed(Mouse::Left) && cardHand1.getGlobalBounds().contains(Vector2f(Mouse::getPosition())))
-        {
-            
-                    sf::Vector2i mousePos =  sf::Mouse::getPosition(window);
-                    cardHand1.setPosition((float)mousePos.x, (float)mousePos.y);
-        }
-        
-        window.draw(cardHand1);
+        window.draw(background);
+		for (int i = 0; i < cards.size(); i++) {
+			window.draw(cards[i].card);
+		}
         window.draw(t);
         window.display();
-    }
-
-    return 0;
+    }   
 }
-
