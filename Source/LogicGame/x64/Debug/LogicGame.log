@@ -1,2 +1,14 @@
 ﻿  Main.cpp
-  LogicGame.vcxproj -> D:\Github\LogicGame2022\Source\x64\Debug\LogicGame.exe
+C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(15,43): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(15,39): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(16,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(16,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  LogicGame.vcxproj -> C:\Users\New\Documents\LogicGame2022\Source\x64\Debug\LogicGame.exe

@@ -1,20 +1,27 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <iostream>
 
+using namespace std; 
+using namespace sf; 
+
+
+int widthX = sf::VideoMode::getDesktopMode().width;
+int heightY = sf::VideoMode::getDesktopMode().height;
 
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    RenderWindow window(sf::VideoMode(0.f,0.f),"Booleo", Style::Fullscreen);
+    RectangleShape shape(Vector2f(widthX,heightY));
+    shape.setFillColor(sf::Color::White);
 
     while (window.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+       
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            window.close();
         }
 
         window.clear();
@@ -24,4 +31,4 @@ int main()
 
     return 0;
 }
-//nie sme tupi
+
