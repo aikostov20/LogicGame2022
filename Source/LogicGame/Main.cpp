@@ -8,19 +8,21 @@ using namespace sf;
 
 int widthX = VideoMode::getDesktopMode().width;
 int heightY = VideoMode::getDesktopMode().height;
-
+const Vector2f cardSize(widthX/16, heightY/6.75);
 struct Card
 {
-    Card(Vector2f size) {
-        card.setSize(size);
+    Card() 
+	{
+        card.setSize(cardSize);
         card.setFillColor(Color::Cyan);
         card.setOutlineThickness(1.f);
         card.setOutlineColor(Color::Black);
-		card.setOrigin(Vector2f(25.f, 25.f));
+		card.setOrigin(Vector2f(cardSize.x/2, cardSize.y/2));
     }
     RectangleShape card;
     bool selected = false;
 };
+
 
 int main()
 {
@@ -45,11 +47,12 @@ int main()
 	vector<Card> cards;
 	bool dragging = false;
 	for (int i = 0; i < 21; ++i) {
-		auto card = new Card({ 120.f,170.f });
-		card->card.setPosition(rand() % 1100 + 100, rand() % 650 + 100);
+		auto card = new Card;
+		card->card.setPosition(Vector2f(widthX-100.f, heightY/2));
 		cards.push_back(*card);
-
 	}
+
+	cout << widthX << "  " << heightY;
     while (window.isOpen())
     {
        
@@ -88,7 +91,7 @@ int main()
 		}
         window.clear();
         window.draw(background);
-		for (int i = 0; i < cards.size(); i++) {
+		for (auto i = cards.size() -1; i > 0; i--) {
 			window.draw(cards[i].card);
 		}
         window.draw(t);
