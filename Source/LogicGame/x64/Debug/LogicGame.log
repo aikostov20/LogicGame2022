@@ -9,29 +9,22 @@ D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(11,31): warning C4244: 'argume
           [
               T=float
           ]
-D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(32,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(45,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(32,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(45,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(41,48): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(54,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(41,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(51,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(59,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(60,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(60,83): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   LogicGame.vcxproj -> D:\Github\LogicGame2022\Source\x64\Debug\LogicGame.exe

@@ -23,25 +23,28 @@ struct Card
     bool selected = false;
 };
 
+struct Slot
+{
+	Slot()
+	{
+		slot.setSize(cardSize);
+		slot.setFillColor(Color::Yellow);
+		slot.setOutlineThickness(1.f);
+		slot.setOutlineColor(Color::Black);
+	}
+	Card* currentCard = nullptr;
+	RectangleShape slot;
+	bool full = false;
+	string card = "";
+};
 
 int main()
 {
-	srand((unsigned)time(nullptr));
     RenderWindow window(VideoMode(widthX, heightY),"Booleo", Style::Fullscreen);
 
     RectangleShape background(Vector2f(widthX,heightY));
 
     background.setFillColor(Color::White);
-    Font fon;
-    fon.loadFromFile("Fonts/arial.ttf");
-    Text t;
-    t.setFont(fon);
-    t.setCharacterSize(50);
-    t.setFillColor(Color::Black);
-    t.setPosition(Vector2f(widthX / 2, heightY / 2));
-    t.setOrigin(Vector2f(100.f, 25.f));
-	t.setString("FlashBANG");
-
 
 	Card* currentCard = nullptr;
 	vector<Card> cards;
@@ -52,7 +55,18 @@ int main()
 		cards.push_back(*card);
 	}
 
-	cout << widthX << "  " << heightY;
+	vector<Slot> slots;
+	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
+	for (float i = 0, Y = heightY / 63.5; i < 7; i++,Y += cardSize.y + heightY / 63.5)
+	{
+		for (float j = 0, X = startW; j < 6 - i; j++, X += cardSize.x + widthX/113)
+		{
+			auto slot = new Slot;
+			slot->slot.setPosition(Vector2f(X, Y));
+			slots.push_back(*slot);
+		}
+		startW += (cardSize.x + widthX / 113) / 2;
+	}
     while (window.isOpen())
     {
        
@@ -64,15 +78,38 @@ int main()
 		if (Mouse::isButtonPressed(Mouse::Left) && !dragging) 
 		{
 			dragging = true;
-				for (auto& it : cards) {
-					if (it.card.getGlobalBounds().contains(mpos.x, mpos.y) && currentCard == nullptr) {
-						it.selected = true;
-						currentCard = &it;
+			for (auto& it : slots) {
+				if (it.slot.getGlobalBounds().contains(mpos) && currentCard == nullptr && it.full) 
+				{
+					it.full = false;
+					currentCard = it.currentCard;
+					it.currentCard = nullptr;
+					break;
+				}
+			}
+			for (auto& it : cards) {
+				if (it.card.getGlobalBounds().contains(mpos) && currentCard == nullptr) {
+					it.selected = true;
+					currentCard = &it;
+					break;
+				}
+			}
+		}
+		else if(!(Mouse::isButtonPressed(Mouse::Left))){
+
+			if (dragging && currentCard != nullptr)
+			{
+				for (int i = 0; i < slots.size(); i++)
+				{
+					if (slots[i].slot.getGlobalBounds().contains(mpos) && !slots[i].full)
+					{
+						currentCard->card.setPosition(slots[i].slot.getPosition().x + cardSize.x / 2, slots[i].slot.getPosition().y + cardSize.y / 2);
+						slots[i].full = 1;
+						slots[i].currentCard = currentCard;
 						break;
 					}
 				}
-		}
-		else if(!(Mouse::isButtonPressed(Mouse::Left))){
+			}
 
 			dragging = false;
 			if (currentCard) 
@@ -82,19 +119,19 @@ int main()
 			}
 		}
 
-		if (dragging == true) {
-			for (int i = 0; i < cards.size(); i++) {
-				if (cards[i].selected)
-					cards[i].card.setPosition(mpos.x, mpos.y);
-
-			}
+		if (dragging && currentCard != nullptr) 
+		{
+			currentCard->card.setPosition(mpos.x, mpos.y);
 		}
+
         window.clear();
         window.draw(background);
-		for (auto i = cards.size() -1; i > 0; i--) {
+		for (size_t i = 0; i < slots.size(); i++) {
+			window.draw(slots[i].slot);
+		}
+		for (auto i = cards.size() - 1; i != -1; i--) {
 			window.draw(cards[i].card);
 		}
-        window.draw(t);
         window.display();
     }   
 }
