@@ -1,5 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include <time.h>
+#include <stdlib.h>
+#include <vector>
+#include <algorithm>
 #include <iostream>
 
 using namespace std; 
@@ -21,6 +25,7 @@ struct Card
     }
     RectangleShape card;
     bool selected = false;
+	string cardValue = "";
 };
 
 struct Slot
@@ -35,26 +40,95 @@ struct Slot
 	Card* currentCard = nullptr;
 	RectangleShape slot;
 	bool full = false;
-	string card = "";
 };
 
 int main()
-{
+{	
+	srand(time(NULL));
+
     RenderWindow window(VideoMode(widthX, heightY),"Booleo", Style::Fullscreen);
 
     RectangleShape background(Vector2f(widthX,heightY));
 
     background.setFillColor(Color::White);
-
+	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor"};
+	int c1or = 0, c0or = 0, c1and = 0, c0and = 0, c1xor = 0, c0xor = 0;
+	bool limit[6] = { false, false, false, false, false, false};
+	int cardRandomiser = 6, stringMover = 5;
 	Card* currentCard = nullptr;
 	vector<Card> cards;
 	bool dragging = false;
-	for (int i = 0; i < 21; ++i) {
+	for (int i = 0; i < 48; i++) {
 		auto card = new Card;
-		card->card.setPosition(Vector2f(widthX-100.f, heightY/2));
+		card->card.setPosition(Vector2f(widthX - 100.f, heightY / 2));
 		cards.push_back(*card);
-	}
 
+		if (cardRandomiser == 0)
+		{
+			cardRandomiser++;
+		}
+		int r = rand() % cardRandomiser;
+		card->cardValue = typesOfCards[r];
+
+		if (card->cardValue == "1or")
+			c1or++;
+		else if (card->cardValue == "0or")
+			c0or++;
+		else if (card->cardValue == "1and")
+			c1and++;
+		else if (card->cardValue == "0and")
+			c0and++;
+		else if (card->cardValue == "1xor")
+			c1xor++;	
+		else if (card->cardValue == "0xor")
+			c0xor++;
+
+		if (c1or == 8){
+			limit[0] = true;
+			cardRandomiser--;
+			c1or++;
+		}
+		if (c0or == 8){
+			limit[1] = true;
+			cardRandomiser--;
+			c0or++;
+		}
+		if (c1and == 8){
+			limit[2] = true;
+			cardRandomiser--;
+			c1and++;
+		}
+		if (c0and == 8){
+			limit[3] = true;
+			cardRandomiser--;
+			c0and++;
+		}
+		if (c1xor == 8){
+			limit[4] = true;
+			cardRandomiser--;
+			c1xor++;
+		}
+		if (c0xor == 8){
+			limit[5] = true;
+			cardRandomiser--;
+			c0xor++;
+		}
+
+		
+		for (int j = 0; j < 6 and stringMover > 0; j++)
+		{
+			string temp = "";
+			if (limit[j]){
+				temp = typesOfCards[j];
+				typesOfCards[j] = typesOfCards[stringMover];
+				typesOfCards[stringMover] = temp;
+				stringMover--;
+				limit[j] = false;
+			}
+		}
+	
+	}
+		
 	vector<Slot> slots;
 	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
 	for (float i = 0, Y = heightY / 63.5; i < 7; i++,Y += cardSize.y + heightY / 63.5)
