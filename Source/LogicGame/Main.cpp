@@ -34,9 +34,15 @@ struct Card
 	Font font;
 	Text cardValueT;
     RectangleShape card;
-    bool selected = false;
+    bool selected = false, result = false;
 	Vector2f lastPos;
 	string cardValue = "";
+	bool Operation(bool a, bool b, string op)
+	{
+		if (op == "or") { return a | b; }
+		if (op == "and") { return a & b; }
+		return a ^ b; 
+	}
 };
 
 struct Slot
@@ -50,9 +56,9 @@ struct Slot
 	}
 	Card* currentCard = nullptr;
 	RectangleShape slot;
-	int index;
-	bool pHand = 0;
-	bool full = false;
+	int index = 0, level = 0;
+	bool pHand = false, full = false, locked = false;
+
 };
 
 void PVP()
@@ -66,103 +72,80 @@ void PVP()
 	ExitButton.setOutlineThickness(2.f);
 	ExitButton.setOutlineColor(Color::Red);
 
-	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
-	int c1or = 0, c0or = 0, c1and = 0, c0and = 0, c1xor = 0, c0xor = 0;
-	bool limit[6] = { false, false, false, false, false, false };
-	int cardRandomiser = 6, stringMover = 5;
-
 	Card* currentCard = nullptr;
 	vector<Card> cards;
 	bool dragging = false;
 
-	for (int i = 0; i < 48; i++) {
+	// Generate cards
+	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
+	int count[6] = {0,0,0,0,0,0}, cardRandomiser = 6, curCount, i = 0;
+	string temp;
+	while (i < 48) {
 		auto card = new Card;
 		card->card.setPosition(Vector2f(widthX - 100.f, heightY / 2));
 		card->lastPos = Vector2f(card->card.getPosition().x - cardSize.x/2-1, card->card.getPosition().y - cardSize.y / 2-1);
 		card->cardValueT.setOrigin(card->cardValueT.getLocalBounds().width / 2, card->cardValueT.getLocalBounds().height / 2);
 		card->cardValueT.setPosition(Vector2f(card->card.getPosition().x - cardSize.x / 2 - 1, card->card.getPosition().y - cardSize.y / 2 - 1));
-		if (cardRandomiser == 0)
-		{
-			cardRandomiser++;
-		}
+
 		int r = rand() % cardRandomiser;
-		card->cardValue = typesOfCards[r];
+		temp = typesOfCards[r];
 
-		if (card->cardValue == "1or")
-			c1or++;
-		else if (card->cardValue == "0or")
-			c0or++;
-		else if (card->cardValue == "1and")
-			c1and++;
-		else if (card->cardValue == "0and")
-			c0and++;
-		else if (card->cardValue == "1xor")
-			c1xor++;
-		else if (card->cardValue == "0xor")
-			c0xor++;
-
-		if (c1or == 8) {
-			limit[0] = true;
-			cardRandomiser--;
-			c1or++;
+		if (temp == "1or") {
+			curCount = 0;
+			if (count[curCount] < 8){count[curCount]++; card->cardValue = temp;}
 		}
-		if (c0or == 8) {
-			limit[1] = true;
-			cardRandomiser--;
-			c0or++;
+		else if (temp == "0or") {
+			curCount = 1;
+			if (count[curCount] < 8) { count[curCount]++; card->cardValue = temp; }
 		}
-		if (c1and == 8) {
-			limit[2] = true;
-			cardRandomiser--;
-			c1and++;
+		else if (temp == "1and") {
+			curCount = 2;
+			if (count[curCount] < 8) { count[curCount]++; card->cardValue = temp; }
 		}
-		if (c0and == 8) {
-			limit[3] = true;
-			cardRandomiser--;
-			c0and++;
+		else if (temp == "0and") {
+			curCount = 3;
+			if (count[curCount] < 8) { count[curCount]++; card->cardValue = temp; }
 		}
-		if (c1xor == 8) {
-			limit[4] = true;
-			cardRandomiser--;
-			c1xor++;
+		else if (temp == "1xor") {
+			curCount = 4;
+			if (count[curCount] < 8) { count[curCount]++; card->cardValue = temp; }
 		}
-		if (c0xor == 8) {
-			limit[5] = true;
-			cardRandomiser--;
-			c0xor++;
+		else {
+			curCount = 5;
+			if (count[curCount] < 8) { count[curCount]++; card->cardValue = temp; }
 		}
 
-
-		for (int j = 0; j < 6 and stringMover > 0; j++)
+		if (card->cardValue.size() != 0)
 		{
-			string temp = "";
-			if (limit[j]) {
-				temp = typesOfCards[j];
-				typesOfCards[j] = typesOfCards[stringMover];
-				typesOfCards[stringMover] = temp;
-				stringMover--;
-				limit[j] = false;
-			}
+			cards.push_back(*card);
+			i++;
 		}
-		cards.push_back(*card);
-
 	}
-
 	for (int i = 0; i < cards.size(); i++)
 	{
 		cards[i].cardValueT.setString(cards[i].cardValue);
+		cards[i].result = (cards[i].cardValue.substr(0, 1) == '1');
 	}
+
+	//Generate slots
 	vector<Slot> slots;
 	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
+	int lock = 0, level = 0;
 	for (float i = 0, Y = heightY / 63.5; i < 7; i++, Y += cardSize.y + heightY / 63.5)
 	{
-		for (float j = 0, X = startW; j < 6 - i; j++, X += cardSize.x + widthX / 113)
+		for (float j = 0, X = startW; j < 6 - i; j++, X += cardSize.x + widthX / 113, lock++)
 		{
 			auto slot = new Slot;
 			slot->slot.setPosition(Vector2f(X, Y));
 			slot->index = int(i);
+			
+			if (lock < 6)
+				slot->locked = true;
+			slot->level = level;
+
 			slots.push_back(*slot);
 		}
+		level++;
 		startW += (cardSize.x + widthX / 113) / 2;
 	}
 
@@ -208,18 +191,25 @@ void PVP()
 			{
 				for (int i = 0; i < slots.size(); i++)
 				{
-					if (slots[i].slot.getGlobalBounds().contains(mpos) && !slots[i].full)
+					if (slots[i].slot.getGlobalBounds().contains(mpos) && !slots[i].full && !slots[i].locked)
 					{
+						//Operation checking
+
+						//if (slots[i - (7 - slots[i].level)].full && slots[i - (6 - slots[i].level)].full && 
+							//slots[i].currentCard->Operation(slots[i - (7 - slots[i].level)].currentCard->result,
+							//slots[i - (6 - slots[i].level)].currentCard->result,
+							//slots[i].currentCard->cardValue.substr(1))){
+
 						currentCard->card.setPosition(slots[i].slot.getPosition().x + cardSize.x / 2,
-													  slots[i].slot.getPosition().y + cardSize.y / 2);
+							slots[i].slot.getPosition().y + cardSize.y / 2);
 						slots[i].full = 1;
 						slots[i].currentCard = currentCard;
 						currentCard->cardValueT.setPosition(currentCard->card.getGlobalBounds().left,
-															currentCard->card.getGlobalBounds().top);
+							currentCard->card.getGlobalBounds().top);
 						currentCard->lastPos = Vector2f(currentCard->card.getGlobalBounds().left,
-														currentCard->card.getGlobalBounds().top);
+							currentCard->card.getGlobalBounds().top);
 						break;
-					}
+						}//}
 				}
 				currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x/2+1, currentCard->lastPos.y + cardSize.y/2+1);
 				currentCard->cardValueT.setPosition(currentCard->card.getGlobalBounds().left,
