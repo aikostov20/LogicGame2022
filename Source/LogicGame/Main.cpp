@@ -66,6 +66,11 @@ void PVP()
 	srand(time(NULL));
 	background.setFillColor(Color::White);
 
+	Texture BGtexture;
+	BGtexture.loadFromFile("../../Images/BGtexture.png");
+	BGtexture.setSmooth(true);
+	background.setTexture(&BGtexture);
+
 	RectangleShape ExitButton(Vector2f(widthX / 20, heightY / 22));
 	ExitButton.setFillColor(Color::Red);
 	ExitButton.setPosition(Vector2f(widthX / 50, heightY / 40));
