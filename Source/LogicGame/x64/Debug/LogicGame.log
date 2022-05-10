@@ -1,176 +1,174 @@
 ﻿  Main.cpp
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(17,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(17,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(17,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(17,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(19,43): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(19,43): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(19,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(19,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(29,31): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(66,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(74,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(59,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(67,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(74,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(67,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(76,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(69,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(76,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(69,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(90,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(98,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(137,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(139,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(139,84): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(157,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(157,105): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(161,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(263,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(145,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(147,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(147,84): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(170,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(170,105): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(174,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(279,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(263,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(279,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(264,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(280,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(264,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(280,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(265,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(281,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(265,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(281,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(266,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(282,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(266,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(282,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(269,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(297,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(269,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(297,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(270,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(298,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(270,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(298,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(276,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(301,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(276,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(301,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(277,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(302,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(277,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(302,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(283,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(305,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(283,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(305,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(284,61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(306,61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(284,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(306,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(289,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(309,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(289,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(309,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(290,62): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(310,62): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\New\Documents\LogicGame2022\Source\LogicGame\Main.cpp(290,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(310,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  LINK : C:\Users\New\Documents\LogicGame2022\Source\x64\Debug\LogicGame.exe not found or not built by the last incremental link; performing full link
-  LogicGame.vcxproj -> C:\Users\New\Documents\LogicGame2022\Source\x64\Debug\LogicGame.exe
+  LogicGame.vcxproj -> D:\Github\LogicGame2022\Source\x64\Debug\LogicGame.exe

@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <stdlib.h>
-#include <vector>
 #include <algorithm>
+#include <vector>
 #include <iostream>
 
 using namespace std; 
@@ -22,20 +22,12 @@ struct Card
     Card() 
 	{
         card.setSize(cardSize);
-        card.setFillColor(Color::Cyan);
-        card.setOutlineThickness(1.f);
-        card.setOutlineColor(Color::Black);
 		card.setOrigin(Vector2f(cardSize.x/2, cardSize.y/2));
-		cardValueT.setCharacterSize(20.f);
-		cardValueT.setFillColor(Color::Black);
-		font.loadFromFile("Fonts/arial.ttf");
-		cardValueT.setFont(font);
     }
-	Font font;
-	Text cardValueT;
     RectangleShape card;
-    bool selected = false, result = false;
+    bool selected = false, result = false, locked = false;
 	Vector2f lastPos;
+	Texture texture;
 	string cardValue = "";
 	bool Operation(bool a, bool b, string op)
 	{
@@ -50,21 +42,22 @@ struct Slot
 	Slot()
 	{
 		slot.setSize(cardSize);
-		slot.setFillColor(Color::Yellow);
-		slot.setOutlineThickness(1.f);
-		slot.setOutlineColor(Color::Black);
+		slot.setFillColor(Color::Transparent);
+		slot.setOutlineThickness(3.f);
+		slot.setOutlineColor(Color(212, 205, 8));
 	}
 	Card* currentCard = nullptr;
 	RectangleShape slot;
+	Texture texture;
 	int index = 0, level = 0;
 	bool pHand = false, full = false, locked = false;
 
 };
-
+void mainMenu();
 void PVP()
 {
 	srand(time(NULL));
-	background.setFillColor(Color::White);
+	//background.setFillColor(Color::White);
 
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
@@ -85,12 +78,25 @@ void PVP()
 	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
 	int count[6] = {0,0,0,0,0,0}, cardRandomiser = 6, curCount, i = 0;
 	string temp;
+	for (int i = 0; i < 6; i++)
+	{
+		auto card = new Card;
+		card->result = rand() % 2;
+		card->texture.loadFromFile("../../Images/1-0Card.png");
+		card->texture.setSmooth(1);
+		card->locked = true;
+		card->card.setTexture(&card->texture);
+		if (!card->result)
+		{
+			card->card.setRotation(180);
+		}
+		cards.push_back(*card);
+	}
+
 	while (i < 48) {
 		auto card = new Card;
 		card->card.setPosition(Vector2f(widthX - 100.f, heightY / 2));
 		card->lastPos = Vector2f(card->card.getPosition().x - cardSize.x/2-1, card->card.getPosition().y - cardSize.y / 2-1);
-		card->cardValueT.setOrigin(card->cardValueT.getLocalBounds().width / 2, card->cardValueT.getLocalBounds().height / 2);
-		card->cardValueT.setPosition(Vector2f(card->card.getPosition().x - cardSize.x / 2 - 1, card->card.getPosition().y - cardSize.y / 2 - 1));
 
 		int r = rand() % cardRandomiser;
 		temp = typesOfCards[r];
@@ -126,10 +132,12 @@ void PVP()
 			i++;
 		}
 	}
-	for (int i = 0; i < cards.size(); i++)
+	for (int i = 6; i < cards.size(); i++)
 	{
-		cards[i].cardValueT.setString(cards[i].cardValue);
 		cards[i].result = (cards[i].cardValue.substr(0, 1) == '1');
+		cards[i].texture.loadFromFile("../../Images/" + cards[i].cardValue + ".png");
+		cards[i].texture.setSmooth(1);
+		cards[i].card.setTexture(&cards[i].texture);
 	}
 
 	//Generate slots
@@ -144,16 +152,21 @@ void PVP()
 			slot->slot.setPosition(Vector2f(X, Y));
 			slot->index = int(i);
 			
-			if (lock < 6)
+			if (lock < 6) 
+			{
 				slot->locked = true;
+				slot->currentCard = &cards[lock];
+				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
+				slot->currentCard->lastPos = slot->slot.getPosition();
+				slot->currentCard->locked = true;
+				slot->full = true;
+			}
 			slot->level = level;
-
 			slots.push_back(*slot);
 		}
 		level++;
 		startW += (cardSize.x + widthX / 113) / 2;
 	}
-
 	for (float i = 0, Y = heightY - (heightY / 63.5 + cardSize.y); i < 5; i++, Y-=cardSize.y + heightY/63.5)
 	{
 		auto hand = new Slot;
@@ -161,7 +174,11 @@ void PVP()
 		hand->slot.setPosition(widthX/113,Y);
 		slots.push_back(*hand);
 	}
-
+	/*for (int i = 0; i < slots.size(); i++)
+	{
+		slots[i].texture.loadFromFile("../../Images/yes.png");
+		slots[i].slot.setTexture(&slots[i].texture);
+	}*/
 	while (window.isOpen())
 	{
 
@@ -174,7 +191,7 @@ void PVP()
 		{
 			dragging = true;
 			for (auto& it : slots) {
-				if (it.slot.getGlobalBounds().contains(mpos) && currentCard == nullptr && it.full)
+				if (it.slot.getGlobalBounds().contains(mpos) && currentCard == nullptr && it.full && !it.currentCard->locked)
 				{
 					it.full = false;
 					currentCard = it.currentCard;
@@ -183,7 +200,7 @@ void PVP()
 				}
 			}
 			for (auto& it : cards) {
-				if (it.card.getGlobalBounds().contains(mpos) && currentCard == nullptr) {
+				if (it.card.getGlobalBounds().contains(mpos) && currentCard == nullptr && !it.locked){
 					it.selected = true;
 					currentCard = &it;
 					break;
@@ -209,16 +226,12 @@ void PVP()
 							slots[i].slot.getPosition().y + cardSize.y / 2);
 						slots[i].full = 1;
 						slots[i].currentCard = currentCard;
-						currentCard->cardValueT.setPosition(currentCard->card.getGlobalBounds().left,
-							currentCard->card.getGlobalBounds().top);
 						currentCard->lastPos = Vector2f(currentCard->card.getGlobalBounds().left,
 							currentCard->card.getGlobalBounds().top);
 						break;
 						}//}
 				}
-				currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x/2+1, currentCard->lastPos.y + cardSize.y/2+1);
-				currentCard->cardValueT.setPosition(currentCard->card.getGlobalBounds().left,
-				currentCard->card.getGlobalBounds().top);
+				currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x/2, currentCard->lastPos.y + cardSize.y/2);
 			}
 			dragging = false;
 			if (currentCard)
@@ -231,12 +244,10 @@ void PVP()
 		if (dragging && currentCard != nullptr)
 		{
 			currentCard->card.setPosition(mpos);
-			currentCard->cardValueT.setPosition(currentCard->card.getGlobalBounds().left, 
-												currentCard->card.getGlobalBounds().top);
 		}
 		if (Mouse::isButtonPressed(Mouse::Left) && ExitButton.getGlobalBounds().contains(mpos))
 		{
-			window.close();
+			mainMenu();
 
 		}
 
@@ -250,7 +261,6 @@ void PVP()
 		//Draw the cards
 		for (auto i = cards.size() - 1; i != -1; i--) {
 			window.draw(cards[i].card);
-			window.draw(cards[i].cardValueT);
 		}
 		window.display();
 	}
@@ -258,40 +268,47 @@ void PVP()
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 void mainMenu()
 {
-	background.setFillColor(Color::White);
+	//background.setFillColor(Color::White);
+	Texture BGtexture;
+	BGtexture.loadFromFile("../../Images/BGtexture.png");
+	BGtexture.setSmooth(true);
+	background.setTexture(&BGtexture);
+	
+
 
 	RectangleShape PVPbutton(Vector2f(widthX/8,heightY/10));
 	RectangleShape PVCbutton(Vector2f(widthX / 8, heightY / 10));
 	RectangleShape H2Pbutton(Vector2f(widthX / 10, heightY / 12));
 	RectangleShape Exitbutton(Vector2f(widthX / 10, heightY / 12));
-	
-	PVPbutton.setFillColor(Color::Blue);
+	Texture pvp, pvc, h2p, exit;
+
+
+	pvp.loadFromFile("../../Images/pvpButton.png");
+	pvc.loadFromFile("../../Images/pvcButton.png");
+	h2p.loadFromFile("../../Images/h2pButton.png");
+	exit.loadFromFile("../../Images/exitButton.png");
+	pvp.setSmooth(1);
+	pvc.setSmooth(1);
+	h2p.setSmooth(1);
+	exit.setSmooth(1);
+
+
+	PVPbutton.setTexture(&pvp);
 	PVPbutton.setPosition(Vector2f(widthX/2,heightY/2-150));
 	PVPbutton.setOrigin(Vector2f(widthX / 8 / 2, heightY / 8 / 2));
-	PVPbutton.setOutlineThickness(2.f);
-	PVPbutton.setOutlineColor(Color::Blue);
 
-
-	PVCbutton.setFillColor(Color::Cyan);
-	PVCbutton.setPosition(Vector2f(widthX / 2, heightY / 2-50));
+	PVCbutton.setTexture(&pvc);
+	PVCbutton.setPosition(Vector2f(widthX / 2, heightY / 2-35));
 	PVCbutton.setOrigin(Vector2f(widthX / 8 / 2, heightY / 8 / 2));
-	PVCbutton.setOutlineThickness(2.f);
-	PVCbutton.setOutlineColor(Color::Cyan);
 
-
-	H2Pbutton.setFillColor(Color::Green);
-	H2Pbutton.setPosition(Vector2f(widthX / 2, heightY / 2 +50));
+	H2Pbutton.setTexture(&h2p);
+	H2Pbutton.setPosition(Vector2f(widthX / 2, heightY / 2 +55));
 	H2Pbutton.setOrigin(Vector2f(widthX / 10 / 2, heightY / 12 / 2));
-	H2Pbutton.setOutlineThickness(2.f);
-	H2Pbutton.setOutlineColor(Color::Green);
 
-	Exitbutton.setFillColor(Color::Red);
-	Exitbutton.setPosition(Vector2f(widthX / 2, heightY / 2 + 150));
+	Exitbutton.setTexture(&exit);
+	Exitbutton.setPosition(Vector2f(widthX / 2, heightY / 2 + 155));
 	Exitbutton.setOrigin(Vector2f(widthX / 10 / 2, heightY / 12 / 2));
-	Exitbutton.setOutlineThickness(2.f);
-	Exitbutton.setOutlineColor(Color::Red);
 
-	
 	while (window.isOpen())
 	{
 		Vector2f mpos = window.mapPixelToCoords(Mouse::getPosition(window));
@@ -310,7 +327,7 @@ void mainMenu()
 		if (Mouse::isButtonPressed(Mouse::Left) && Exitbutton.getGlobalBounds().contains(mpos))
 		{
 			window.close(); 
-			exit(0);
+			//exit(0);
 			
 		}
 
@@ -326,8 +343,6 @@ void mainMenu()
 	}
 
 }
-
-
 
 int main()
 {	
