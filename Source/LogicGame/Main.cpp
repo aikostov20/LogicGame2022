@@ -53,11 +53,12 @@ struct Slot
 	bool pHand = false, full = false, locked = false;
 
 };
+
 void mainMenu();
+
 void PVP()
 {
 	srand(time(NULL));
-	//background.setFillColor(Color::White);
 
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
@@ -69,6 +70,22 @@ void PVP()
 	ExitButton.setPosition(Vector2f(widthX / 50, heightY / 40));
 	ExitButton.setOutlineThickness(2.f);
 	ExitButton.setOutlineColor(Color::Red);
+
+	RectangleShape TTButton(Vector2f(widthX / 20, heightY / 22));
+	TTButton.setFillColor(Color::Transparent);
+	TTButton.setPosition(Vector2f(widthX-100, 20));
+	TTButton.setOutlineThickness(2.f);
+	TTButton.setOutlineColor(Color::Red);
+
+	RectangleShape TruthTable(Vector2f(widthX / 5, heightY / 10));
+	TruthTable.setFillColor(Color::White);
+	TruthTable.setPosition(widthX+100, heightY / 2);
+	TruthTable.setOrigin(Vector2f(widthX / 10, heightY / 20));
+
+
+	Texture TruthTableTexture;
+	TruthTableTexture.loadFromFile("../../Images/table1.png");
+	TruthTable.setTexture(&TruthTableTexture);
 
 	Card* currentCard = nullptr;
 	vector<Card> cards;
@@ -251,9 +268,21 @@ void PVP()
 
 		}
 
+		if (Mouse::isButtonPressed(Mouse::Left) && TTButton.getGlobalBounds().contains(mpos))
+		{
+			TruthTable.setPosition(widthX/2, heightY/2);
+			
+		}
+		//sf::Event::MouseButtonReleased
+		if (!Mouse::isButtonPressed(Mouse::Left) )
+		{
+			TruthTable.setPosition(widthX +200, heightY / 2);
+
+		}
 		window.clear();
 		window.draw(background);
 		window.draw(ExitButton); 
+		window.draw(TTButton); 
 		for (size_t i = 0; i < slots.size(); i++) {
 			window.draw(slots[i].slot);
 		}
@@ -262,18 +291,60 @@ void PVP()
 		for (auto i = cards.size() - 1; i != -1; i--) {
 			window.draw(cards[i].card);
 		}
+		window.draw(TruthTable);
 		window.display();
 	}
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void  H2P()
+{
+	RectangleShape content(Vector2f(widthX /2, heightY ));
+	content.setFillColor(Color::White);
+	content.setOrigin(Vector2f(widthX  /2/ 2, heightY / 2));
+	content.setPosition(widthX / 2, heightY /2);
+	content.setOutlineThickness(3.f);
+	content.setOutlineColor(Color::Black);
+
+
+	RectangleShape ExitButton(Vector2f(widthX / 20, heightY / 22));
+	ExitButton.setFillColor(Color::Red);
+	ExitButton.setPosition(Vector2f(widthX / 50, heightY / 40));
+	ExitButton.setOutlineThickness(2.f);
+	ExitButton.setOutlineColor(Color::Red);
+
+	auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+		if (Mouse::isButtonPressed(Mouse::Left) && ExitButton.getGlobalBounds().contains(mpos))
+		{
+			mainMenu();
+
+		}
+		window.clear();
+		window.draw(background);
+		window.draw(content);
+
+		window.display();
+	}
+
+
+}
+
 void mainMenu()
 {
 	//background.setFillColor(Color::White);
+	
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
 	BGtexture.setSmooth(true);
 	background.setTexture(&BGtexture);
-	
 
 
 	RectangleShape PVPbutton(Vector2f(widthX/8,heightY/10));
@@ -323,7 +394,11 @@ void mainMenu()
 			PVP();
 			
 		}
+		if (Mouse::isButtonPressed(Mouse::Left) && H2Pbutton.getGlobalBounds().contains(mpos))
+		{
+			H2P();
 
+		}
 		if (Mouse::isButtonPressed(Mouse::Left) && Exitbutton.getGlobalBounds().contains(mpos))
 		{
 			window.close(); 
