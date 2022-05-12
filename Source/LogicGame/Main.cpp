@@ -84,7 +84,7 @@ void PVP()
 
 
 	Texture TruthTableTexture;
-	TruthTableTexture.loadFromFile("../../Images/table1.png");
+	TruthTableTexture.loadFromFile("../../Images/truthTable.png");
 	TruthTable.setTexture(&TruthTableTexture);
 
 	Card* currentCard = nullptr;
