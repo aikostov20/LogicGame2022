@@ -8,8 +8,6 @@
 using namespace std; 
 using namespace sf; 
 
-
-
 int widthX = VideoMode::getDesktopMode().width;
 int heightY = VideoMode::getDesktopMode().height;
 
@@ -42,15 +40,12 @@ struct Slot
 	Slot()
 	{
 		slot.setSize(cardSize);
-		slot.setFillColor(Color::Transparent);
-		slot.setOutlineThickness(3.f);
-		slot.setOutlineColor(Color(212, 205, 8));
 	}
 	Card* currentCard = nullptr;
 	RectangleShape slot;
 	Texture texture;
-	int index = 0, level = 0;
-	bool pHand = false, full = false, locked = false;
+	int index = 0, level = 0, cardsIn = 0;
+	bool pHand = false, full = false, locked = false, deck = false;
 
 };
 
@@ -59,7 +54,7 @@ void mainMenu();
 void PVP()
 {
 	srand(time(NULL));
-
+	bool playerTurn = 0;
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
 	BGtexture.setSmooth(true);
@@ -86,15 +81,23 @@ void PVP()
 	Texture TruthTableTexture;
 	TruthTableTexture.loadFromFile("../../Images/truthTable.png");
 	TruthTable.setTexture(&TruthTableTexture);
-
+	
+	//Cards vector
 	Card* currentCard = nullptr;
 	vector<Card> cards;
 	bool dragging = false;
+	//Slots vector
+	vector<Slot> slots;
+	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
+	int lock = 0, level = 0;
 
-	// Generate cards
-	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
-	int count[6] = {0,0,0,0,0,0}, cardRandomiser = 6, curCount, i = 0;
-	string temp;
+	//Generate slots
+	auto deck = new Slot;
+	deck->cardsIn = 48;
+	deck->deck = 1;
+	deck->locked = 1;
+	deck->slot.setPosition(Vector2f(widthX - 100.f - cardSize.x / 2, heightY / 2 - cardSize.y / 2));
+	slots.push_back(*deck);
 	for (int i = 0; i < 6; i++)
 	{
 		auto card = new Card;
@@ -109,7 +112,37 @@ void PVP()
 		}
 		cards.push_back(*card);
 	}
+	for (float i = 0, Y = heightY / 63.5; i < 7; i++, Y += cardSize.y + heightY / 63.5)
+	{
+		for (float j = 0, X = startW; j < 6 - i; j++, X += cardSize.x + widthX / 113, lock++)
+		{
+			auto slot = new Slot;
+			slot->slot.setPosition(Vector2f(X, Y));
+			slot->index = int(i);
 
+			if (lock < 6)
+			{
+				slot->locked = true;
+				slot->currentCard = &cards[lock];
+				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
+				slot->currentCard->lastPos = slot->slot.getPosition();
+				slot->currentCard->locked = true;
+				slot->full = true;
+			}
+			slot->level = level;
+			slots.push_back(*slot);
+		}
+		level++;
+		startW += (cardSize.x + widthX / 113) / 2;
+	}
+
+	
+
+	// Generate cards
+	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
+	int count[6] = {0,0,0,0,0,0}, cardRandomiser = 6, curCount, i = 0;
+	string temp;
+	int index = 0;
 	while (i < 48) {
 		auto card = new Card;
 		card->card.setPosition(Vector2f(widthX - 100.f, heightY / 2));
@@ -143,6 +176,7 @@ void PVP()
 			if (count[curCount] < 8) { count[curCount]++; card->cardValue = temp; }
 		}
 
+		(card->cardValue != "") ? deck->currentCard = card : 0;
 		if (card->cardValue.size() != 0)
 		{
 			cards.push_back(*card);
@@ -157,33 +191,6 @@ void PVP()
 		cards[i].card.setTexture(&cards[i].texture);
 	}
 
-	//Generate slots
-	vector<Slot> slots;
-	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
-	int lock = 0, level = 0;
-	for (float i = 0, Y = heightY / 63.5; i < 7; i++, Y += cardSize.y + heightY / 63.5)
-	{
-		for (float j = 0, X = startW; j < 6 - i; j++, X += cardSize.x + widthX / 113, lock++)
-		{
-			auto slot = new Slot;
-			slot->slot.setPosition(Vector2f(X, Y));
-			slot->index = int(i);
-			
-			if (lock < 6) 
-			{
-				slot->locked = true;
-				slot->currentCard = &cards[lock];
-				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
-				slot->currentCard->lastPos = slot->slot.getPosition();
-				slot->currentCard->locked = true;
-				slot->full = true;
-			}
-			slot->level = level;
-			slots.push_back(*slot);
-		}
-		level++;
-		startW += (cardSize.x + widthX / 113) / 2;
-	}
 	for (float i = 0, Y = heightY - (heightY / 63.5 + cardSize.y); i < 5; i++, Y-=cardSize.y + heightY/63.5)
 	{
 		auto hand = new Slot;
@@ -191,18 +198,17 @@ void PVP()
 		hand->slot.setPosition(widthX/113,Y);
 		slots.push_back(*hand);
 	}
-	/*for (int i = 0; i < slots.size(); i++)
+	for (int i = 0; i < slots.size(); i++)
 	{
-		slots[i].texture.loadFromFile("../../Images/yes.png");
+		slots[i].texture.loadFromFile("../../Images/BGslot.png");
 		slots[i].slot.setTexture(&slots[i].texture);
-	}*/
+	}
 	while (window.isOpen())
 	{
+		Event event;
+		while (window.pollEvent(event)){}
+		if (Keyboard::isKeyPressed(Keyboard::Escape)) {mainMenu(); }
 
-		if (Keyboard::isKeyPressed(Keyboard::Escape))
-		{
-			window.close();
-		}
 		auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
 		if (Mouse::isButtonPressed(Mouse::Left) && !dragging)
 		{
@@ -211,6 +217,7 @@ void PVP()
 				if (it.slot.getGlobalBounds().contains(mpos) && currentCard == nullptr && it.full && !it.currentCard->locked)
 				{
 					it.full = false;
+					it.cardsIn--;
 					currentCard = it.currentCard;
 					it.currentCard = nullptr;
 					break;
@@ -241,14 +248,22 @@ void PVP()
 
 						currentCard->card.setPosition(slots[i].slot.getPosition().x + cardSize.x / 2,
 							slots[i].slot.getPosition().y + cardSize.y / 2);
-						slots[i].full = 1;
+						slots[i].cardsIn++;
+						if (!slots[i].deck) 
+						{
+							slots[i].full = 1;
+						}
+						else if (slots[i].cardsIn == 48)
+						{
+							slots[i].full = 1;
+						}
 						slots[i].currentCard = currentCard;
 						currentCard->lastPos = Vector2f(currentCard->card.getGlobalBounds().left,
 							currentCard->card.getGlobalBounds().top);
 						break;
 						}//}
 				}
-				currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x/2, currentCard->lastPos.y + cardSize.y/2);
+				//currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x/2, currentCard->lastPos.y + cardSize.y/2);
 			}
 			dragging = false;
 			if (currentCard)
@@ -316,11 +331,11 @@ void  H2P()
 	auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
 	while (window.isOpen())
 	{
-		sf::Event event;
+		Event event;
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
+			if (Keyboard::isKeyPressed(Keyboard::Escape))
+				mainMenu();
 		}
 		if (Mouse::isButtonPressed(Mouse::Left) && ExitButton.getGlobalBounds().contains(mpos))
 		{
@@ -339,8 +354,6 @@ void  H2P()
 
 void mainMenu()
 {
-	//background.setFillColor(Color::White);
-	
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
 	BGtexture.setSmooth(true);
@@ -382,28 +395,21 @@ void mainMenu()
 
 	while (window.isOpen())
 	{
+		Event event;
+		while (window.pollEvent(event)){}
 		Vector2f mpos = window.mapPixelToCoords(Mouse::getPosition(window));
-
-		if (Keyboard::isKeyPressed(Keyboard::Escape))
-		{
-			window.close();
-		}
 
 		if (Mouse::isButtonPressed(Mouse::Left) && PVPbutton.getGlobalBounds().contains(mpos))
 		{
 			PVP();
-			
 		}
 		if (Mouse::isButtonPressed(Mouse::Left) && H2Pbutton.getGlobalBounds().contains(mpos))
 		{
 			H2P();
-
 		}
 		if (Mouse::isButtonPressed(Mouse::Left) && Exitbutton.getGlobalBounds().contains(mpos))
 		{
 			window.close(); 
-			//exit(0);
-			
 		}
 
 		window.clear();
