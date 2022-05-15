@@ -1,7 +1,7 @@
 <br>
 <br>
 <p align="center">
-  <img align="center" src="Images/logo.png">
+  <img align="center" src="https://user-images.githubusercontent.com/85336778/168472705-54d7de42-94d0-40bf-a512-d5f6f15cd134.png" height="50%" width = "45%">
 </p>
 
 <h1 align="center">We are Am-I-Goos</h1>
@@ -11,7 +11,7 @@
 
 <h1 align="center"> Preview of the game</h1> <a name = "preview"></a>
 
-<p align="center" font-size="40">B00le0 is a multiplayer card game in which your main goal is to form a pyramid using only cards based on Boolean logic.</p>
+<p align = "center" font-size="40">B00le0 is a multiplayer card game in which your main goal is to form a pyramid using only cards based on Boolean logic.</p>
 <p align="center">
   <img src = "https://user-images.githubusercontent.com/85336778/168471705-ef51357f-4974-460c-ae50-799cdc0aab34.png" height="70%" width = "65%">
  </p>
@@ -40,10 +40,11 @@
 
 ---
 
-  <p align = "center">
-   <img src = "https://img.shields.io/github/languages/count/AIKostov20/LogicGame2022?style=for-the-badge">
-   <img src = "https://img.shields.io/github/contributors/AIKostov20/LogicGame202?style=for-the-badge">
-   <img src = "https://img.shields.io/github/languages/top/RAIKostov20/LogicGame202?style=for-the-badge">
-  </p>
-  
----  
+# 📥Download
+
+<p>To download our project you have to paste this text in your command prompt:</p>
+
+<pre>git@github.com:AIKostov20/LogicGame2022.git</pre>
+
+
+---
