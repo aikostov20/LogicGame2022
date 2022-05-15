@@ -1,350 +1,350 @@
 ﻿  Main.cpp
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(15,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(16,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(15,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(16,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(17,43): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(19,43): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(17,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(19,31): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(56,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(63,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(58,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(65,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(63,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(65,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(65,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(67,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(65,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(67,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(72,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(74,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(72,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(74,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(74,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(76,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(81,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(83,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(81,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(83,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(83,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(83,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(84,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(85,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(85,31): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(86,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(84,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(86,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(97,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(121,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(121,84): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(154,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(99,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(123,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(123,84): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(156,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(200,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(200,105): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(204,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(294,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(294,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(300,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(300,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(323,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(330,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(202,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(202,105): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(206,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(296,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(296,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(302,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(302,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(325,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(332,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(330,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(332,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(332,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(334,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(332,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(334,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(339,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(341,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(339,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(341,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(341,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(343,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(348,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(350,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(348,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(350,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(350,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(350,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(351,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(352,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(352,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(353,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(351,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(353,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(363,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(387,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(387,84): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(420,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(365,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(389,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(389,84): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(422,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(466,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(466,109): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(470,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(560,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(560,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(566,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(566,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(590,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(468,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(468,109): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(472,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(562,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(562,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(568,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(568,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(592,45): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(590,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(592,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(592,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(594,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(592,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(594,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(593,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(593,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(602,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(595,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(595,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(604,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(602,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(604,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(603,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(605,49): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(603,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(605,36): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(605,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(607,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(605,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(607,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(607,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(609,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(607,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(609,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(646,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(648,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(646,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(648,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(647,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(649,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(647,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(649,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(648,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(650,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(648,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(650,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(649,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(651,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(649,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(651,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(664,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(666,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(664,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(666,39): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(665,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(667,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(665,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(667,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(668,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(670,56): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(668,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(670,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(669,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(671,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(669,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(671,42): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(672,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(674,57): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(672,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(674,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(673,61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(675,61): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(673,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(675,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(676,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(678,58): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(676,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(678,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(677,62): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(679,62): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-I:\GitShitHub ili kakto iskash\LogicGame2022\Source\LogicGame\Main.cpp(677,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\LogicGame2022\Source\LogicGame\Main.cpp(679,44): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-  LogicGame.vcxproj -> I:\GitShitHub ili kakto iskash\LogicGame2022\Source\x64\Debug\LogicGame.exe
+  LogicGame.vcxproj -> D:\Github\LogicGame2022\Source\x64\Debug\LogicGame.exe

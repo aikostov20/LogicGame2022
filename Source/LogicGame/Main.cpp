@@ -1,3 +1,4 @@
+#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <stdlib.h>
@@ -13,6 +14,7 @@ int heightY = VideoMode::getDesktopMode().height;
 
 RenderWindow window(VideoMode(widthX, heightY), "Booleo", Style::Fullscreen);
 RectangleShape background(Vector2f(widthX, heightY));
+
 
 const Vector2f cardSize(widthX/16, heightY/6.75);
 struct Card
@@ -714,5 +716,8 @@ void mainMenu()
 
 int main()
 {	
+	Image icon;
+	icon.loadFromFile("../../Images/icon.png");
+	window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 	mainMenu();
 }
