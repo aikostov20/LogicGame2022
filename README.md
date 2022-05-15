@@ -40,6 +40,10 @@
 
 ---
 
+# [📄 Documentation](docs/documentation.docx)
+# [📄 Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/ssivanov19_codingburgas_bg/Ef3D5tOVSVdAn_65XNKjjNsBrI0uxP9aQ8EOq__vaUhD5w?e=lurG6j)
+
+---
 # Used technologies
 - <img src="https://user-images.githubusercontent.com/85336778/168471335-47e2d66a-c812-4b33-a43c-08e9e7076ac4.png" width=30>  Visual studio (For the code)
 - <img src="https://user-images.githubusercontent.com/85336778/168491597-5ece5e98-8c3a-447d-8fad-a90c1547cd0b.png" width=25> SFML (For the code)
