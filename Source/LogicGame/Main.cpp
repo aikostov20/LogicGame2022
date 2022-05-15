@@ -60,17 +60,23 @@ void PVP()
 	BGtexture.setSmooth(true);
 	background.setTexture(&BGtexture);
 
-	RectangleShape ExitButton(Vector2f(widthX / 20, heightY / 22));
-	ExitButton.setFillColor(Color::Red);
-	ExitButton.setPosition(Vector2f(widthX / 50, heightY / 40));
-	ExitButton.setOutlineThickness(2.f);
-	ExitButton.setOutlineColor(Color::Red);
+	RectangleShape BackButton(Vector2f(widthX / 20, heightY / 22));
+	BackButton.setFillColor(Color::Red);
+	BackButton.setPosition(Vector2f(widthX / 50, heightY / 40));
+
+	Texture backButtonTexture;
+	backButtonTexture.loadFromFile("../../Images/backButton.png");
+	backButtonTexture.setSmooth(1);
+	BackButton.setTexture(&backButtonTexture);
 
 	RectangleShape TTButton(Vector2f(widthX / 20, heightY / 22));
-	TTButton.setFillColor(Color::Transparent);
+	TTButton.setFillColor(Color::White);
 	TTButton.setPosition(Vector2f(widthX-100, 20));
-	TTButton.setOutlineThickness(2.f);
-	TTButton.setOutlineColor(Color::Red);
+
+	Texture TTButtonTexture;
+	TTButtonTexture.loadFromFile("../../Images/helpButton.png");
+	TTButtonTexture.setSmooth(1);
+	TTButton.setTexture(&TTButtonTexture);
 
 	RectangleShape TruthTable(Vector2f(widthX / 5, heightY / 10));
 	TruthTable.setFillColor(Color::White);
@@ -277,7 +283,7 @@ void PVP()
 		{
 			currentCard->card.setPosition(mpos);
 		}
-		if (Mouse::isButtonPressed(Mouse::Left) && ExitButton.getGlobalBounds().contains(mpos))
+		if (Mouse::isButtonPressed(Mouse::Left) && BackButton.getGlobalBounds().contains(mpos))
 		{
 			mainMenu();
 
@@ -296,7 +302,7 @@ void PVP()
 		}
 		window.clear();
 		window.draw(background);
-		window.draw(ExitButton); 
+		window.draw(BackButton);
 		window.draw(TTButton); 
 		for (size_t i = 0; i < slots.size(); i++) {
 			window.draw(slots[i].slot);
@@ -321,23 +327,28 @@ void PVC()
 	BGtexture.setSmooth(true);
 	background.setTexture(&BGtexture);
 
-	RectangleShape ExitButton(Vector2f(widthX / 20, heightY / 22));
-	ExitButton.setFillColor(Color::Red);
-	ExitButton.setPosition(Vector2f(widthX / 50, heightY / 40));
-	ExitButton.setOutlineThickness(2.f);
-	ExitButton.setOutlineColor(Color::Red);
+	RectangleShape BackButton(Vector2f(widthX / 20, heightY / 22));
+	BackButton.setFillColor(Color::Red);
+	BackButton.setPosition(Vector2f(widthX / 50, heightY / 40));
+
+	Texture backButtonTexture;
+	backButtonTexture.loadFromFile("../../Images/backButton.png");
+	backButtonTexture.setSmooth(1);
+	BackButton.setTexture(&backButtonTexture);
 
 	RectangleShape TTButton(Vector2f(widthX / 20, heightY / 22));
-	TTButton.setFillColor(Color::Transparent);
+	TTButton.setFillColor(Color::White);
 	TTButton.setPosition(Vector2f(widthX - 100, 20));
-	TTButton.setOutlineThickness(2.f);
-	TTButton.setOutlineColor(Color::Red);
+
+	Texture TTButtonTexture;
+	TTButtonTexture.loadFromFile("../../Images/helpButton.png");
+	TTButtonTexture.setSmooth(1);
+	TTButton.setTexture(&TTButtonTexture);
 
 	RectangleShape TruthTable(Vector2f(widthX / 5, heightY / 10));
 	TruthTable.setFillColor(Color::White);
 	TruthTable.setPosition(widthX + 100, heightY / 2);
 	TruthTable.setOrigin(Vector2f(widthX / 10, heightY / 20));
-
 
 	Texture TruthTableTexture;
 	TruthTableTexture.loadFromFile("../../Images/truthTable.png");
@@ -538,7 +549,7 @@ void PVC()
 		{
 			currentCard->card.setPosition(mpos);
 		}
-		if (Mouse::isButtonPressed(Mouse::Left) && ExitButton.getGlobalBounds().contains(mpos))
+		if (Mouse::isButtonPressed(Mouse::Left) && BackButton.getGlobalBounds().contains(mpos))
 		{
 			mainMenu();
 
@@ -557,7 +568,7 @@ void PVC()
 		}
 		window.clear();
 		window.draw(background);
-		window.draw(ExitButton);
+		window.draw(BackButton);
 		window.draw(TTButton);
 		for (size_t i = 0; i < slots.size(); i++) {
 			window.draw(slots[i].slot);
@@ -583,23 +594,33 @@ void  H2P()
 	content.setOutlineThickness(3.f);
 	content.setOutlineColor(Color::Black);
 
+	Texture h2pContent;
+	h2pContent.loadFromFile("../../Images/h2pContent.png");
+	h2pContent.setSmooth(1);
 
-	RectangleShape ExitButton(Vector2f(widthX / 20, heightY / 22));
-	ExitButton.setFillColor(Color::Red);
-	ExitButton.setPosition(Vector2f(widthX / 50, heightY / 40));
-	ExitButton.setOutlineThickness(2.f);
-	ExitButton.setOutlineColor(Color::Red);
+	content.setTexture(&h2pContent);
+	content.setPosition(Vector2f(widthX / 2, heightY / 2));
+	content.setOrigin(Vector2f(widthX / 4, heightY / 2));
 
-	auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
+	RectangleShape BackButton(Vector2f(widthX / 20, heightY / 22));
+	BackButton.setFillColor(Color::Red);
+	BackButton.setPosition(Vector2f(widthX / 50, heightY / 40));
+
+	Texture backButtonTexture;
+	backButtonTexture.loadFromFile("../../Images/backButton.png");
+	backButtonTexture.setSmooth(1);
+	BackButton.setTexture(&backButtonTexture);
+
 	while (window.isOpen())
 	{
+		auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
 		Event event;
 		while (window.pollEvent(event))
 		{
 			if (Keyboard::isKeyPressed(Keyboard::Escape))
 				mainMenu();
 		}
-		if (Mouse::isButtonPressed(Mouse::Left) && ExitButton.getGlobalBounds().contains(mpos))
+		if (Mouse::isButtonPressed(Mouse::Left) && BackButton.getGlobalBounds().contains(mpos))
 		{
 			mainMenu();
 
@@ -607,7 +628,7 @@ void  H2P()
 		window.clear();
 		window.draw(background);
 		window.draw(content);
-
+		window.draw(BackButton);
 		window.display();
 	}
 
