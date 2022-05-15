@@ -18,10 +18,10 @@
 
 ---
 
-<h1 align="center"> Preview of the game</h1> <a name = "preview"></a>
+<h1 align=""> Preview of the game</h1> <a name = "preview"></a>
 
-<p align = "center" font-size="40">B00le0 is a multiplayer card game in which your main goal is to form a pyramid using only cards based on Boolean logic.</p>
-<p align="center">
+<p align = "" font-size="40">B00le0 is a multiplayer card game in which your main goal is to form a pyramid using only cards based on Boolean logic.</p>
+<p align="">
   <img src = "https://user-images.githubusercontent.com/85336778/168487225-2afd4e6e-0e8e-42f3-8f21-2096d7619da6.png" height="60%" width = "70%">
  </p>
 
