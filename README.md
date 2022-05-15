@@ -18,10 +18,10 @@
 
 ---
 
-<h1 align=""> Preview of the game</h1> <a name = "preview"></a>
+<h1 align="center"> Preview of the game</h1> <a name = "preview"></a>
 
-<p align = "" font-size="40">B00le0 is a multiplayer card game in which your main goal is to form a pyramid using only cards based on Boolean logic.</p>
-<p align="">
+<p align = "center" font-size="40">B00le0 is a multiplayer card game in which your main goal is to form a pyramid using only cards based on Boolean logic.</p>
+<p align="center">
   <img src = "https://user-images.githubusercontent.com/85336778/168487225-2afd4e6e-0e8e-42f3-8f21-2096d7619da6.png" height="60%" width = "70%">
  </p>
 
@@ -31,19 +31,21 @@
 
 ><a href = "https://github.com/AIKostov20"> Aleksander Kostov</a> - Scrum Trainer
 
-><a href = "https://github.com/YYTodorov20"> Yoan Todorov</a>  - Back-End Developer
+><a href = "https://github.com/YYTodorov20"> Yoan Todorov</a>  - BackEnd Developer
 
-><a href = "https://github.com/NVDespotov20"> Nikolay Despotov</a>  - Back-End Developer
+><a href = "https://github.com/NVDespotov20"> Nikolay Despotov</a>  - BackEnd Developer
 
 ><a href = "https://github.com/APPetrova"> Alexandra Petrova</a> - QA/Designer
 <br>
 
 ---
 
-# [📄 Documentation](docs/documentation.docx)
-# [📄 Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/ssivanov19_codingburgas_bg/Ef3D5tOVSVdAn_65XNKjjNsBrI0uxP9aQ8EOq__vaUhD5w?e=lurG6j)
+# [📄 Documentation](https://codingburgas-my.sharepoint.com/:w:/g/personal/yytodorov20_codingburgas_bg/EVFgtoVelD9ItlNz70p14coBkhsPIjyMh5YiKsDdiIDZqA?e=2lzKPq)
+# [📄 Presentation](https://codingburgas-my.sharepoint.com/:p:/g/personal/yytodorov20_codingburgas_bg/ETeKweobz8VNrP5dJ2bOsS4BHA8gUiDrbZHxQZYf9i0uLw?e=xtFHnj)
+# [📄 QA Documentation](https://codingburgas-my.sharepoint.com/:x:/g/personal/yytodorov20_codingburgas_bg/EfQbzzrP76VIsimefKPyLPcBXurZSCepK_0d6AdqFWaqLQ?e=bl2JS4)
 
 ---
+
 # Used technologies
 - <img src="https://user-images.githubusercontent.com/85336778/168471335-47e2d66a-c812-4b33-a43c-08e9e7076ac4.png" width=30>  Visual studio (For the code)
 - <img src="https://user-images.githubusercontent.com/85336778/168491597-5ece5e98-8c3a-447d-8fad-a90c1547cd0b.png" width=25> SFML (For the code)
@@ -61,4 +63,4 @@
 
 <pre>git clone https://github.com/AIKostov20/LogicGame2022.git</pre>
 
-<p>Or you can download the .zip file from the repository. Go into the "Source" folder and then click the LogicGame.sln file.</p>
+<p>Or you can downoload the zip file from the repository. Go into Source folder and then click the LogicGame.sln file.</p>
