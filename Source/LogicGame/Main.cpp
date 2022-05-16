@@ -1,10 +1,11 @@
-#pragma comment(linker, "/SUBSYSTEM:windows /ENTRY:mainCRTStartup")
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <stdlib.h>
+#include <Windows.h>
 #include <algorithm>
 #include <vector>
 #include <iostream>
+#include <random>
 
 using namespace std; 
 using namespace sf; 
@@ -47,15 +48,16 @@ struct Slot
 	RectangleShape slot;
 	Texture texture;
 	int index = 0, level = 0, cardsIn = 0;
-	bool pHand = false, full = false, locked = false, deck = false;
+	bool pHand = false, full = false, locked = false, deck = false, discard = false;
 
 };
 
 void mainMenu();
-
+////////////////////////////////////////PVP/////////////////////////////////////////////////////////
 void PVP()
 {
-	srand(time(NULL));
+	int seed = time(NULL);
+	srand(seed);
 	bool playerTurn = 0;
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
@@ -89,13 +91,26 @@ void PVP()
 	Texture TruthTableTexture;
 	TruthTableTexture.loadFromFile("../../Images/truthTable.png");
 	TruthTable.setTexture(&TruthTableTexture);
+
+	Font font;
+	font.loadFromFile("Fonts/arial.ttf");
+	Text playerTurnT;
+	playerTurnT.setFont(font);
+	playerTurnT.setCharacterSize(widthX/30);
+	playerTurnT.setFillColor(Color::Black);
+	playerTurnT.setPosition(Vector2f(widthX/ 1.37, heightY/ 1.1));
+	playerTurnT.setString("Player One's turn");
 	
 	//Cards vector
 	Card* currentCard = nullptr;
-	vector<Card> cards;
+	vector<vector<Card>> cards;
+	cards.push_back({});
+	cards.push_back({});
 	bool dragging = false;
 	//Slots vector
-	vector<Slot> slots;
+	vector<vector<Slot>> slots;
+	slots.push_back({});
+	slots.push_back({});
 	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
 	int lock = 0, level = 0;
 
@@ -105,7 +120,8 @@ void PVP()
 	deck->deck = 1;
 	deck->locked = 1;
 	deck->slot.setPosition(Vector2f(widthX - 100.f - cardSize.x / 2, heightY / 2 - cardSize.y / 2));
-	slots.push_back(*deck);
+	slots[playerTurn].push_back(*deck);
+	slots[!playerTurn].push_back(*deck);
 	for (int i = 0; i < 6; i++)
 	{
 		auto card = new Card;
@@ -118,7 +134,8 @@ void PVP()
 		{
 			card->card.setRotation(180);
 		}
-		cards.push_back(*card);
+		cards[playerTurn].push_back(*card);
+		cards[!playerTurn].push_back(*card);
 	}
 	for (float i = 0, Y = heightY / 63.5; i < 7; i++, Y += cardSize.y + heightY / 63.5)
 	{
@@ -131,21 +148,35 @@ void PVP()
 			if (lock < 6)
 			{
 				slot->locked = true;
-				slot->currentCard = &cards[lock];
+				slot->currentCard = &cards[playerTurn][lock];
 				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
 				slot->currentCard->lastPos = slot->slot.getPosition();
 				slot->currentCard->locked = true;
 				slot->full = true;
 			}
 			slot->level = level;
-			slots.push_back(*slot);
+			slots[playerTurn].push_back(*slot);
+			if (lock < 6)
+			{
+				slot->locked = true;
+				slot->currentCard = &cards[!playerTurn][lock];
+				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
+				slot->currentCard->lastPos = slot->slot.getPosition();
+				(slot->currentCard->card.getRotation()==0) ? slot->currentCard->card.setRotation(180) : slot->currentCard->card.setRotation(0);
+				slot->currentCard->locked = true;
+				slot->full = true;
+			}
+			slots[!playerTurn].push_back(*slot);
 		}
 		level++;
 		startW += (cardSize.x + widthX / 113) / 2;
 	}
-
-	
-
+	auto discard = new Slot;
+	discard->cardsIn = 0;
+	discard->discard = 1;
+	discard->slot.setPosition(Vector2f(widthX - 100 - cardSize.x / 2, heightY / 2 - cardSize.y / 2+cardSize.y+ heightY / 63.5));
+	slots[playerTurn].push_back(*discard);
+	slots[!playerTurn].push_back(*discard);
 	// Generate cards
 	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
 	int count[6] = {0,0,0,0,0,0}, cardRandomiser = 6, curCount, i = 0;
@@ -187,29 +218,80 @@ void PVP()
 		(card->cardValue != "") ? deck->currentCard = card : 0;
 		if (card->cardValue.size() != 0)
 		{
-			cards.push_back(*card);
+			cards[playerTurn].push_back(*card);
+			cards[!playerTurn].push_back(*card);
 			i++;
 		}
 	}
-	for (int i = 6; i < cards.size(); i++)
+	for (int i = 6; i < cards[playerTurn].size(); i++)
 	{
-		cards[i].result = (cards[i].cardValue.substr(0, 1) == '1');
-		cards[i].texture.loadFromFile("../../Images/" + cards[i].cardValue + ".png");
-		cards[i].texture.setSmooth(1);
-		cards[i].card.setTexture(&cards[i].texture);
+		cards[playerTurn][i].result = (cards[playerTurn][i].cardValue.substr(0, 1) == '1');
+		cards[playerTurn][i].texture.loadFromFile("../../Images/" + cards[playerTurn][i].cardValue + ".png");
+		cards[playerTurn][i].texture.setSmooth(1);
+		cards[playerTurn][i].card.setTexture(&cards[playerTurn][i].texture);
+		cards[!playerTurn][i].result = (cards[playerTurn][i].cardValue.substr(0, 1) == '1');
+		cards[!playerTurn][i].texture.loadFromFile("../../Images/" + cards[playerTurn][i].cardValue + ".png");
+		cards[!playerTurn][i].texture.setSmooth(1);
+		cards[!playerTurn][i].card.setTexture(&cards[playerTurn][i].texture);
 	}
+	default_random_engine eng(seed);
+	shuffle(cards[playerTurn].begin() + 6, cards[playerTurn].end(), eng);
 
 	for (float i = 0, Y = heightY - (heightY / 63.5 + cardSize.y); i < 5; i++, Y-=cardSize.y + heightY/63.5)
 	{
 		auto hand = new Slot;
 		hand->pHand = 1;
 		hand->slot.setPosition(widthX/113,Y);
-		slots.push_back(*hand);
+		slots[playerTurn].push_back(*hand);
+		slots[!playerTurn].push_back(*hand);
 	}
-	for (int i = 0; i < slots.size(); i++)
+	for (int i = 0; i < slots[playerTurn].size(); i++)
 	{
-		slots[i].texture.loadFromFile("../../Images/BGslot.png");
-		slots[i].slot.setTexture(&slots[i].texture);
+		slots[playerTurn][i].texture.loadFromFile("../../Images/BGslot.png");
+		slots[!playerTurn][i].texture.loadFromFile("../../Images/BGslot.png");
+		slots[playerTurn][i].slot.setTexture(&slots[playerTurn][i].texture);
+		slots[!playerTurn][i].slot.setTexture(&slots[!playerTurn][i].texture);
+	}
+	int collected[8] = { 0, 0, 0, 0, 0, 0, 0 };
+	for (int i = 0; i < 4; i++)
+	{
+		int r = rand() % 41 + 6;
+		for (int s = 0; s < 8; s++)
+		{
+			for (int h = 0; h < 8; h++)
+			{
+				while (r == collected[h]) {
+					r = rand() % 41 + 6;
+				}
+			}
+		}
+		collected[i] = r;
+		slots[playerTurn][i + 23].currentCard = &cards[playerTurn][r];
+		slots[playerTurn][i + 23].full = 1;
+		slots[playerTurn][i + 23].cardsIn = 1;
+		slots[playerTurn][i + 23].currentCard->card.setPosition(slots[playerTurn][i + 23].slot.getPosition().x + cardSize.x / 2,
+																slots[playerTurn][i + 23].slot.getPosition().y + cardSize.y / 2);
+		slots[playerTurn][i + 23].currentCard->lastPos = Vector2f(slots[playerTurn][i + 23].slot.getPosition().x,
+																  slots[playerTurn][i + 23].slot.getPosition().y);
+		r = rand() % 41 + 6;
+		for (int s = 0; s < 8; s++)
+		{
+			for (int h = 0; h < 8; h++)
+			{
+				while (r == collected[h]) {
+					r = rand() % 41 + 6;
+				}
+			}
+		}
+		collected[i+4] = r;
+		slots[!playerTurn][i + 23].currentCard = &cards[!playerTurn][r];
+		slots[!playerTurn][i + 23].full = 1;
+		slots[!playerTurn][i + 23].cardsIn = 1;
+		slots[!playerTurn][i + 23].currentCard->card.setPosition(slots[!playerTurn][i + 23].slot.getPosition().x + cardSize.x / 2,
+																 slots[!playerTurn][i + 23].slot.getPosition().y + cardSize.y / 2);
+		slots[!playerTurn][i + 23].currentCard->lastPos = Vector2f(slots[!playerTurn][i + 23].slot.getPosition().x,
+																   slots[!playerTurn][i + 23].slot.getPosition().y);
+		
 	}
 	while (window.isOpen())
 	{
@@ -218,11 +300,11 @@ void PVP()
 		if (Keyboard::isKeyPressed(Keyboard::Escape)) {mainMenu(); }
 
 		auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (Mouse::isButtonPressed(Mouse::Left) && !dragging)
+		if (Mouse::isButtonPressed(Mouse::Left) && !dragging && currentCard == nullptr)
 		{
 			dragging = true;
-			for (auto& it : slots) {
-				if (it.slot.getGlobalBounds().contains(mpos) && currentCard == nullptr && it.full && !it.currentCard->locked)
+			for (auto& it : slots[playerTurn]) {
+				if (it.slot.getGlobalBounds().contains(mpos) && it.full && !it.currentCard->locked)
 				{
 					it.full = false;
 					it.cardsIn--;
@@ -231,8 +313,8 @@ void PVP()
 					break;
 				}
 			}
-			for (auto& it : cards) {
-				if (it.card.getGlobalBounds().contains(mpos) && currentCard == nullptr && !it.locked){
+			for (auto& it : cards[playerTurn]) {
+				if (it.card.getGlobalBounds().contains(mpos) && !it.locked){
 					it.selected = true;
 					currentCard = &it;
 					break;
@@ -243,33 +325,40 @@ void PVP()
 
 			if (dragging && currentCard != nullptr)
 			{
-				for (int i = 0; i < slots.size(); i++)
+				for (int i = 0; i < slots[playerTurn].size(); i++)
 				{
-					if (slots[i].slot.getGlobalBounds().contains(mpos) && !slots[i].full && !slots[i].locked)
+					if (slots[playerTurn][i].slot.getGlobalBounds().contains(mpos) && !slots[playerTurn][i].full && !slots[playerTurn][i].locked)
 					{
-						//Operation checking
-
-						//if (slots[i - (7 - slots[i].level)].full && slots[i - (6 - slots[i].level)].full && 
-							//slots[i].currentCard->Operation(slots[i - (7 - slots[i].level)].currentCard->result,
-							//slots[i - (6 - slots[i].level)].currentCard->result,
-							//slots[i].currentCard->cardValue.substr(1))){
-
-						currentCard->card.setPosition(slots[i].slot.getPosition().x + cardSize.x / 2,
-							slots[i].slot.getPosition().y + cardSize.y / 2);
-						slots[i].cardsIn++;
-						if (!slots[i].deck) 
+						currentCard->card.setPosition(slots[playerTurn][i].slot.getPosition().x + cardSize.x / 2,
+													  slots[playerTurn][i].slot.getPosition().y + cardSize.y / 2);
+						slots[playerTurn][i].cardsIn++;
+						if (!slots[playerTurn][i].deck && !slots[playerTurn][i].discard)
 						{
-							slots[i].full = 1;
+							slots[playerTurn][i].full = 1;
 						}
-						else if (slots[i].cardsIn == 48)
+						else if (slots[playerTurn][i].cardsIn == 48)
 						{
-							slots[i].full = 1;
+							slots[playerTurn][i].full = 1;
 						}
-						slots[i].currentCard = currentCard;
+						if (!slots[playerTurn][i].pHand)
+						{
+							currentCard->locked = 1;
+							for (int l = 0; l < cards[playerTurn].size(); l++)
+							{
+								cards[playerTurn][l].card.setFillColor(Color::Transparent);
+							}
+							(playerTurn) ? playerTurnT.setString("Player One's turn") : playerTurnT.setString("Player Two's turn");
+							playerTurn = !playerTurn;
+							for (int l = 0; l < cards[playerTurn].size(); l++)
+							{
+								cards[playerTurn][l].card.setFillColor(Color::White);
+							}
+						}
+						slots[playerTurn][i].currentCard = currentCard;
 						currentCard->lastPos = Vector2f(currentCard->card.getGlobalBounds().left,
 							currentCard->card.getGlobalBounds().top);
 						break;
-						}//}
+						}
 				}
 				currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x/2, currentCard->lastPos.y + cardSize.y/2);
 			}
@@ -302,27 +391,30 @@ void PVP()
 			TruthTable.setPosition(widthX +200, heightY / 2);
 
 		}
+
 		window.clear();
 		window.draw(background);
 		window.draw(BackButton);
 		window.draw(TTButton); 
-		for (size_t i = 0; i < slots.size(); i++) {
-			window.draw(slots[i].slot);
+		window.draw(playerTurnT);
+		for (size_t i = 0; i < slots[playerTurn].size(); i++) {
+			window.draw(slots[playerTurn][i].slot);
 		}
 
 		//Draw the cards
-		for (auto i = cards.size() - 1; i != -1; i--) {
-			window.draw(cards[i].card);
+		for (auto i = cards[playerTurn].size() - 1; i != -1; i--) {
+			window.draw(cards[playerTurn][i].card);
 		}
 		window.draw(TruthTable);
 		window.display();
 	}
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////PVC/////////////////////////////////////////////////////////
 
 void PVC()
 {
-	srand(time(NULL));
+	int seed = time(NULL);
+	srand(seed);
 	bool playerTurn = 0;
 	Texture BGtexture;
 	BGtexture.loadFromFile("../../Images/BGtexture.png");
@@ -352,16 +444,30 @@ void PVC()
 	TruthTable.setPosition(widthX + 100, heightY / 2);
 	TruthTable.setOrigin(Vector2f(widthX / 10, heightY / 20));
 
+
 	Texture TruthTableTexture;
 	TruthTableTexture.loadFromFile("../../Images/truthTable.png");
 	TruthTable.setTexture(&TruthTableTexture);
 
+	Font font;
+	font.loadFromFile("Fonts/arial.ttf");
+	Text playerTurnT;
+	playerTurnT.setFont(font);
+	playerTurnT.setCharacterSize(widthX / 30);
+	playerTurnT.setFillColor(Color::Black);
+	playerTurnT.setPosition(Vector2f(widthX / 1.37, heightY / 1.1));
+	playerTurnT.setString("Player One's turn");
+
 	//Cards vector
 	Card* currentCard = nullptr;
-	vector<Card> cards;
+	vector<vector<Card>> cards;
+	cards.push_back({});
+	cards.push_back({});
 	bool dragging = false;
 	//Slots vector
-	vector<Slot> slots;
+	vector<vector<Slot>> slots;
+	slots.push_back({});
+	slots.push_back({});
 	float startW = widthX / 2 - (3.0 * cardSize.x + 2.5 * widthX / 113);
 	int lock = 0, level = 0;
 
@@ -371,7 +477,8 @@ void PVC()
 	deck->deck = 1;
 	deck->locked = 1;
 	deck->slot.setPosition(Vector2f(widthX - 100.f - cardSize.x / 2, heightY / 2 - cardSize.y / 2));
-	slots.push_back(*deck);
+	slots[playerTurn].push_back(*deck);
+	slots[!playerTurn].push_back(*deck);
 	for (int i = 0; i < 6; i++)
 	{
 		auto card = new Card;
@@ -384,7 +491,8 @@ void PVC()
 		{
 			card->card.setRotation(180);
 		}
-		cards.push_back(*card);
+		cards[playerTurn].push_back(*card);
+		cards[!playerTurn].push_back(*card);
 	}
 	for (float i = 0, Y = heightY / 63.5; i < 7; i++, Y += cardSize.y + heightY / 63.5)
 	{
@@ -397,21 +505,35 @@ void PVC()
 			if (lock < 6)
 			{
 				slot->locked = true;
-				slot->currentCard = &cards[lock];
+				slot->currentCard = &cards[playerTurn][lock];
 				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
 				slot->currentCard->lastPos = slot->slot.getPosition();
 				slot->currentCard->locked = true;
 				slot->full = true;
 			}
 			slot->level = level;
-			slots.push_back(*slot);
+			slots[playerTurn].push_back(*slot);
+			if (lock < 6)
+			{
+				slot->locked = true;
+				slot->currentCard = &cards[!playerTurn][lock];
+				slot->currentCard->card.setPosition(slot->slot.getPosition().x + cardSize.x / 2, slot->slot.getPosition().y + cardSize.y / 2);
+				slot->currentCard->lastPos = slot->slot.getPosition();
+				(slot->currentCard->card.getRotation() == 0) ? slot->currentCard->card.setRotation(180) : slot->currentCard->card.setRotation(0);
+				slot->currentCard->locked = true;
+				slot->full = true;
+			}
+			slots[!playerTurn].push_back(*slot);
 		}
 		level++;
 		startW += (cardSize.x + widthX / 113) / 2;
 	}
-
-
-
+	auto discard = new Slot;
+	discard->cardsIn = 0;
+	discard->discard = 1;
+	discard->slot.setPosition(Vector2f(widthX - 100 - cardSize.x / 2, heightY / 2 - cardSize.y / 2 + cardSize.y + heightY / 63.5));
+	slots[playerTurn].push_back(*discard);
+	slots[!playerTurn].push_back(*discard);
 	// Generate cards
 	vector<string> typesOfCards = { "1or", "0or", "1and", "0and", "1xor", "0xor" };
 	int count[6] = { 0,0,0,0,0,0 }, cardRandomiser = 6, curCount, i = 0;
@@ -453,29 +575,80 @@ void PVC()
 		(card->cardValue != "") ? deck->currentCard = card : 0;
 		if (card->cardValue.size() != 0)
 		{
-			cards.push_back(*card);
+			cards[playerTurn].push_back(*card);
+			cards[!playerTurn].push_back(*card);
 			i++;
 		}
 	}
-	for (int i = 6; i < cards.size(); i++)
+	for (int i = 6; i < cards[playerTurn].size(); i++)
 	{
-		cards[i].result = (cards[i].cardValue.substr(0, 1) == '1');
-		cards[i].texture.loadFromFile("../../Images/" + cards[i].cardValue + ".png");
-		cards[i].texture.setSmooth(1);
-		cards[i].card.setTexture(&cards[i].texture);
+		cards[playerTurn][i].result = (cards[playerTurn][i].cardValue.substr(0, 1) == '1');
+		cards[playerTurn][i].texture.loadFromFile("../../Images/" + cards[playerTurn][i].cardValue + ".png");
+		cards[playerTurn][i].texture.setSmooth(1);
+		cards[playerTurn][i].card.setTexture(&cards[playerTurn][i].texture);
+		cards[!playerTurn][i].result = (cards[playerTurn][i].cardValue.substr(0, 1) == '1');
+		cards[!playerTurn][i].texture.loadFromFile("../../Images/" + cards[playerTurn][i].cardValue + ".png");
+		cards[!playerTurn][i].texture.setSmooth(1);
+		cards[!playerTurn][i].card.setTexture(&cards[playerTurn][i].texture);
 	}
+	default_random_engine eng(seed);
+	shuffle(cards[playerTurn].begin() + 6, cards[playerTurn].end(), eng);
 
 	for (float i = 0, Y = heightY - (heightY / 63.5 + cardSize.y); i < 5; i++, Y -= cardSize.y + heightY / 63.5)
 	{
 		auto hand = new Slot;
 		hand->pHand = 1;
 		hand->slot.setPosition(widthX / 113, Y);
-		slots.push_back(*hand);
+		slots[playerTurn].push_back(*hand);
+		slots[!playerTurn].push_back(*hand);
 	}
-	for (int i = 0; i < slots.size(); i++)
+	for (int i = 0; i < slots[playerTurn].size(); i++)
 	{
-		slots[i].texture.loadFromFile("../../Images/BGslot.png");
-		slots[i].slot.setTexture(&slots[i].texture);
+		slots[playerTurn][i].texture.loadFromFile("../../Images/BGslot.png");
+		slots[!playerTurn][i].texture.loadFromFile("../../Images/BGslot.png");
+		slots[playerTurn][i].slot.setTexture(&slots[playerTurn][i].texture);
+		slots[!playerTurn][i].slot.setTexture(&slots[!playerTurn][i].texture);
+	}
+	int collected[8] = { 0, 0, 0, 0, 0, 0, 0 };
+	for (int i = 0; i < 4; i++)
+	{
+		int r = rand() % 41 + 6;
+		for (int s = 0; s < 8; s++)
+		{
+			for (int h = 0; h < 8; h++)
+			{
+				while (r == collected[h]) {
+					r = rand() % 41 + 6;
+				}
+			}
+		}
+		collected[i] = r;
+		slots[playerTurn][i + 23].currentCard = &cards[playerTurn][r];
+		slots[playerTurn][i + 23].full = 1;
+		slots[playerTurn][i + 23].cardsIn = 1;
+		slots[playerTurn][i + 23].currentCard->card.setPosition(slots[playerTurn][i + 23].slot.getPosition().x + cardSize.x / 2,
+			slots[playerTurn][i + 23].slot.getPosition().y + cardSize.y / 2);
+		slots[playerTurn][i + 23].currentCard->lastPos = Vector2f(slots[playerTurn][i + 23].slot.getPosition().x,
+			slots[playerTurn][i + 23].slot.getPosition().y);
+		r = rand() % 41 + 6;
+		for (int s = 0; s < 8; s++)
+		{
+			for (int h = 0; h < 8; h++)
+			{
+				while (r == collected[h]) {
+					r = rand() % 41 + 6;
+				}
+			}
+		}
+		collected[i + 4] = r;
+		slots[!playerTurn][i + 23].currentCard = &cards[!playerTurn][r];
+		slots[!playerTurn][i + 23].full = 1;
+		slots[!playerTurn][i + 23].cardsIn = 1;
+		slots[!playerTurn][i + 23].currentCard->card.setPosition(slots[!playerTurn][i + 23].slot.getPosition().x + cardSize.x / 2,
+			slots[!playerTurn][i + 23].slot.getPosition().y + cardSize.y / 2);
+		slots[!playerTurn][i + 23].currentCard->lastPos = Vector2f(slots[!playerTurn][i + 23].slot.getPosition().x,
+			slots[!playerTurn][i + 23].slot.getPosition().y);
+
 	}
 	while (window.isOpen())
 	{
@@ -484,11 +657,11 @@ void PVC()
 		if (Keyboard::isKeyPressed(Keyboard::Escape)) { mainMenu(); }
 
 		auto mpos = window.mapPixelToCoords(Mouse::getPosition(window));
-		if (Mouse::isButtonPressed(Mouse::Left) && !dragging)
+		if (Mouse::isButtonPressed(Mouse::Left) && !dragging && currentCard == nullptr)
 		{
 			dragging = true;
-			for (auto& it : slots) {
-				if (it.slot.getGlobalBounds().contains(mpos) && currentCard == nullptr && it.full && !it.currentCard->locked)
+			for (auto& it : slots[playerTurn]) {
+				if (it.slot.getGlobalBounds().contains(mpos) && it.full && !it.currentCard->locked)
 				{
 					it.full = false;
 					it.cardsIn--;
@@ -497,8 +670,8 @@ void PVC()
 					break;
 				}
 			}
-			for (auto& it : cards) {
-				if (it.card.getGlobalBounds().contains(mpos) && currentCard == nullptr && !it.locked) {
+			for (auto& it : cards[playerTurn]) {
+				if (it.card.getGlobalBounds().contains(mpos) && !it.locked) {
 					it.selected = true;
 					currentCard = &it;
 					break;
@@ -509,33 +682,40 @@ void PVC()
 
 			if (dragging && currentCard != nullptr)
 			{
-				for (int i = 0; i < slots.size(); i++)
+				for (int i = 0; i < slots[playerTurn].size(); i++)
 				{
-					if (slots[i].slot.getGlobalBounds().contains(mpos) && !slots[i].full && !slots[i].locked)
+					if (slots[playerTurn][i].slot.getGlobalBounds().contains(mpos) && !slots[playerTurn][i].full && !slots[playerTurn][i].locked)
 					{
-						//Operation checking
-
-						//if (slots[i - (7 - slots[i].level)].full && slots[i - (6 - slots[i].level)].full && 
-							//slots[i].currentCard->Operation(slots[i - (7 - slots[i].level)].currentCard->result,
-							//slots[i - (6 - slots[i].level)].currentCard->result,
-							//slots[i].currentCard->cardValue.substr(1))){
-
-						currentCard->card.setPosition(slots[i].slot.getPosition().x + cardSize.x / 2,
-							slots[i].slot.getPosition().y + cardSize.y / 2);
-						slots[i].cardsIn++;
-						if (!slots[i].deck)
+						currentCard->card.setPosition(slots[playerTurn][i].slot.getPosition().x + cardSize.x / 2,
+							slots[playerTurn][i].slot.getPosition().y + cardSize.y / 2);
+						slots[playerTurn][i].cardsIn++;
+						if (!slots[playerTurn][i].deck && !slots[playerTurn][i].discard)
 						{
-							slots[i].full = 1;
+							slots[playerTurn][i].full = 1;
 						}
-						else if (slots[i].cardsIn == 48)
+						else if (slots[playerTurn][i].cardsIn == 48)
 						{
-							slots[i].full = 1;
+							slots[playerTurn][i].full = 1;
 						}
-						slots[i].currentCard = currentCard;
+						if (!slots[playerTurn][i].pHand)
+						{
+							currentCard->locked = 1;
+							for (int l = 0; l < cards[playerTurn].size(); l++)
+							{
+								cards[playerTurn][l].card.setFillColor(Color::Transparent);
+							}
+							(playerTurn) ? playerTurnT.setString("Player One's turn") : playerTurnT.setString("Player Two's turn");
+							playerTurn = !playerTurn;
+							for (int l = 0; l < cards[playerTurn].size(); l++)
+							{
+								cards[playerTurn][l].card.setFillColor(Color::White);
+							}
+						}
+						slots[playerTurn][i].currentCard = currentCard;
 						currentCard->lastPos = Vector2f(currentCard->card.getGlobalBounds().left,
 							currentCard->card.getGlobalBounds().top);
 						break;
-					}//}
+					}
 				}
 				currentCard->card.setPosition(currentCard->lastPos.x + cardSize.x / 2, currentCard->lastPos.y + cardSize.y / 2);
 			}
@@ -568,24 +748,26 @@ void PVC()
 			TruthTable.setPosition(widthX + 200, heightY / 2);
 
 		}
+
 		window.clear();
 		window.draw(background);
 		window.draw(BackButton);
 		window.draw(TTButton);
-		for (size_t i = 0; i < slots.size(); i++) {
-			window.draw(slots[i].slot);
+		window.draw(playerTurnT);
+		for (size_t i = 0; i < slots[playerTurn].size(); i++) {
+			window.draw(slots[playerTurn][i].slot);
 		}
 
 		//Draw the cards
-		for (auto i = cards.size() - 1; i != -1; i--) {
-			window.draw(cards[i].card);
+		for (auto i = cards[playerTurn].size() - 1; i != -1; i--) {
+			window.draw(cards[playerTurn][i].card);
 		}
 		window.draw(TruthTable);
 		window.display();
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////H2P/////////////////////////////////////////////////////////
 
 void  H2P()
 {
@@ -636,7 +818,7 @@ void  H2P()
 
 
 }
-
+//////////////////////////////////////mainMenu//////////////////////////////////////////////////////
 void mainMenu()
 {
 	Texture BGtexture;
